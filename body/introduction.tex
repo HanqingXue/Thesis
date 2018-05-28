@@ -66,7 +66,104 @@ PANTHER	& 基因及其产物相关的通路数据库&http://www.pantherdb.org	& 
 \end{figure}
 基于随机游走概念提出的一系列方法被广泛应用在生物网络扩展和生物网络中潜在的链接预测领域，例如药物的重定位领域。本人在[]中系统的总结了基于网络的药物重定位方法，这些方法对于药物-疾病关系，疾病-通路关系的发现具有重要的意义，这些方法也能很好的迁移到生物通路网络的扩展方面。例如Chipman\cite{chipman2009predicting}等人生物网络上使用了随机游走算法，该方法捕获了生物网络的全局信息，预测出和已知通路相关的部分基因。Macropol\cite{Macropol}提出了一种自启动的随机游走算法，在蛋白质网络上检测到了相关的功能模块（蛋白质通路）。Liu\cite{liu2010link}提出了一种本地随机游走算法，该算法以随机游走算法为基础，实现了在规模的复杂网络中的关联关系的预测，以此来实现生物通路的扩展。该方法具有以较低的复杂度得到高精度的预测结果和扩展结果等特点。
 
-国内对于通路分析和通路网络的扩展研究者较少。多数的研究者将自己的研究方向集中在基于随机游走算法的生物通路扩展的方法的研究上。郑伟[19]等人就率先提出了一种多标签游走算法，即基于随机游走算法的多标签分类算法：首先将含有多标签的复杂网络映射成为多标签随机游走图，然后每当一个未分类（即不具有分类标签）的数据被输入便建立一个对应的多标签随机游走图序列；最后，再对得到的图序列中每个图建立其相应随机游走模型，得到遍历每个顶点的概率分布，并将其转换为每个标签对应的概率分布，有效地解决了多标签分类的问题。该方法可以通过分类问题解决通路网络扩展问题。谢[20]等人提出了一种叫做Bi-Random Walk的方法，该方法在疾病构成网络上实现了疾病未知链接的预测，可借鉴到生物通路网络的扩展过程中。张巧生[21]师兄提出了一种基于网络的生物通络扩展方法，该方法避免了已有的通路分析方法的局限性，实验结果表明该方法具有较强的可靠性和预测精度。
+
+国内学者也对生物通路网络的扩展进行深入的研究。王夏\cite{王夏2009大肠杆菌}等利用马尔科夫聚类的方法在对蛋白质网络进行了综合分析，借助模块分析的方法，预测了蛋白质网络中的相关功能模块，作者整合模块之间的作用关系、GO数据库注释信息、KEGG\cite{kanehisa2008kegg}数据库中的代谢通路数据，提出了一种既能扩展通路网络，又能进行致病性和细胞进程研究的方法，对于生物通路的研究具有十分重要的作用和意义。
+
+李寅珠\cite{李寅珠2012基于蛋白质相互作用网络的代谢}等提出了利用蛋白质相互作用信息来预测扩展生物通路网络的方法。作者在使用蛋白相互作用关系构建的网络上，考虑到蛋白质网络中的一阶、二阶特性，使用聚类分析算法进行了蛋白质网络的功能划分，使得同一个生物通路网络中的蛋白均出现在同一个蛋白质功能模块，以此来发现与通路网络相关的新的蛋白。
+
+郑伟\cite{郑伟2010一种基于随机游走模型的多标签分类算法}等人提出了一种多标签游走算法，即基于随机游走算法的多标签分类算法：首先将含有多标签的复杂网络映射成为多标签随机游走图，然后每当一个未分类（即不具有分类标签）的数据被输入时便建立一个对应的多标签随机游走图序列；最后，再对得到的图序列中每个图建立其相应随机游走模型，得到遍历每个顶点的概率分布，并将其转换为每个标签对应的概率分布，有效地解决了多标签分类的问题。该方法可以通过分类问题解决通路网络扩展问题。
+
+谢\cite{xie2012prioritizing}等人提出了一种叫做Bi-Random Walk的方法，该方法在疾病构成网络上实现了疾病未知链接的预测，可借鉴到生物通路网络的扩展过程中。张巧生\cite{zhang2016network}提出了一种基于网络的生物通络扩展方法，该方法避免了已有的通路分析方法的局限性，实验结果表明该方法具有较强的可靠性和预测精度。
 
 
 
+\section{生物通路网络的可视化技术国内外研究现状}[Current research situation version]
+
+随着对生物信息研究的继续，对于通路可视化需求日益增长。在传统的情况下，生物通路网络一般是由生物学专家来绘制，数据库中展示的生物通路图也是静态的不可以编辑的。这种方式很耗时耗力，当发现一个通路中有新的信息时候，更新生物通路十分耗时。针对这些问题大量的可视化工具被开发出来，以IPA为代表的大量通路分析和可视化软件被开发出来，极大的便利了研究者的对生物通路网络图的深入研究，大大节省了研究者的时间和精力。目前主流的通路可视化平台如表\ref{table2}所示
+
+\begin{table}[htbp]
+  \centering
+	\caption[table2]{当前主流的通路可视化工具}
+\vspace{0.5em}\wuhao
+\begin{tabularx}{1.0\textwidth}{lX}
+\toprule[1.5pt]
+名称 & 网址 \\
+\midrule[1pt]
+Ingenuity Pathway Analysis（IPA）	& www.ingenuity.com\\
+GeneGo/MetaCore 	& www.genego.com\\
+Pathway Studio 	& www.ariadnegenomics.com\\
+GenMAPP	       & www.genmapp.com\\
+WikiPathways & www. wikipathways.org\\
+Pathway Painter	 & www.pathway.painter.gsa-online.de/)\\
+cPath	& www.cbio.mskcc.org/cpath\\
+GeneGo/MetaCore 	& www.genego.com\\
+Pathway Studio 	& www.ariadnegenomics.com\\
+GenMAPP	& www.genmapp.com\\
+BioCyc	& www.biocyc.org\\
+Pubgene	& www.pubgene.org\\
+PANTHER	& www.pantherdb.org\\
+WebGestalt	& www.genmapp.com\\
+
+\bottomrule[1.5pt]
+\end{tabularx}
+\end{table}
+
+当前比较主流的生物通路展示方式多基于JavaScript的可视化技术，因为互联网技术的日益发展，传统的桌面端展示方式不适合人们对信息和数据快速获取和分享的需求，而JavaScript为代表的网页端开发语言，可以实现可视化系统的线上部署访问，用户无下载软件带来时间成本，同时也省去了部分软件在不同的操作系统，不同的架构下的部署使用的繁琐步骤，因此该基于JavaScript的可视化技术越来越受到开发者用户的欢迎，常用可视化库有D3.js, cytoscape.js等。
+
+
+Cytoscape\cite{}是一款受到用户喜欢的通路网络可视化软件，该软件提供了强大而丰富网络可视化和分析功能，并且实现了跨平台，该软件的研发团队为适应广大的用户的需要开发了Cytoscape.js，也是就是该软件的核心JavaScript库，该库包含了网络布局调整，网络交互、网络下载、数据下载等众多功能，用户基于此库结合自己的需要开发相关的控件、插件、布局配置等，本文第四章所开发的可视化系统也基于该库。
+
+
+D3.js\cite{}是一款基于数据驱动的前端JavaScript库，该软件库提供了标准的接口封装，用户可以根据自己的需求定制开发自己所需的前端控件, 为用户个性化需求提供了极大的便利。相对于cytoscape 该软件库更加灵活，但是与之带来不便之处是使用该库进行开发工作量比较大，对于系统中具体的实现细节，需要开发者自己去处理，因此对于不熟悉前端技术的开发人员该技术具有较高的门槛。
+
+JavaScript技术为通路可视化提供了极大的便利，同时与生物通路相关数据格式协议，也极大的方便了开发者进行可视化系统的搭建。SBGN\cite{}（系统生物学图形表示法）提供了生物化学和细胞过程可视化表征的一个标准。该标准为生物通路数据提供了同一数据格式，通路数据只需按照这个标准进行存储, 在多个平台和系统下都能进行美观的展示，免去了不同数据展示库在数据格式变化情况下引起的问题，同时基于此标准开发出来的工具可以方便更多用户和研究者使用。
+
+\begin{table}[htbp]
+  \centering
+	\caption[table2]{基于SBGN标准通路网络可视化工具}
+\vspace{0.5em}\wuhao
+\begin{tabularx}{1.0\textwidth}{lX}
+\toprule[1.5pt]
+软件名称 & 网址 \\
+\midrule[1pt]
+Arcadia	 &  http://arcadiapathways.sourceforge.net/\\
+Beacon Pathway Editor	 & https://bioinformatics.cs.vt.edu/beacon/\\
+BIOCHAM	 & http://contraintes.inria.fr/biocham/\\
+Biographer	 & http://biographer.biologie.hu-berlin.de/\\
+BioUML	& http://www.biouml.org/\\
+CellDesigner & http://www.celldesigner.org/\\
+COPASI	& http://copasi.org/\\
+CySBGN	 & https://www.ebi.ac.uk/saezrodriguez/cno/cysbgn/\\
+Dunnart	 & http://users.monash.edu/~mwybrow/dunnart/\\
+EscherConverter		& https://escher.readthedocs.io/en/latest/escherconverter.html\\
+iPathways	 & http://www.ipathways.org/\\
+JWS Online	& https://jjj.bio.vu.nl/\\
+Mimoza	 & http://mimoza.bordeaux.inria.fr/\\
+Newt Editor	& http://newteditor.org/\\
+PathVisio	& http://www.pathvisio.org/plugin/sbgn-plugin/\\
+PathwayLab	& http://www.innetics.com/\\
+SBGN-ED	  & https://immersive-analytics.infotech.monash.edu/vanted/addons/sbgn-ed \\
+SBML Layout Viewer	 & http://sysbioapps.dyndns.org/Layout/\\
+SBMM assistant	 & http://www.sbmm.uma.es/SPA/\\
+yEd Graph Editor	& https://www.yworks.com/products/yed\\
+
+\bottomrule[1.5pt]
+\end{tabularx}
+\end{table}
+
+国内在生物通路网络的可视化方面也有诸多进展。竺涌楠\cite{}等人设计并实现了一套基于html5 的通路展示系统；胡言石\cite{}等人实现了一种与帕金森相关的生化通路和蛋白质互作网络的可视化系统；黄益灵\cite{}等人实现了一个名为PBSK 的浏览器，该浏览器可以实现四种XML格式的生物通路数据的展示。
+
+\section{主要研究内容}
+本课题主要研究的内容是生物通路网络的扩展算法的研究和生物通路网络可视化平台的设计与实现。本课题兼顾到在算法方面的创新性和在平台实现的实用性。
+
+生物通路是细胞中分子间的一系列活动，导致细胞内某种产物或变化。一些通路网络会引起新的分子的组装比如脂肪和蛋白质的生成。生物通络可以控制基因的打开，或者刺激细胞的移动。由于复杂疾病往往和生物通路之间具有密切的关系，与生物通路相关联的多种的基因、蛋白等对于疾病的发病机制具有重要的影响。随着高通量技术的发展，基因、蛋白、代谢等组学数据日益积累，结合这些丰富的生物数据进行生物通路的扩展是一项重要研究手段，对于发掘生物通路潜在的功能，在疾病发病机制研究、临床治疗水平的改善、药物研究等领域具有重要的作用。
+
+目前，有关通路网络的扩展算法主要集中在生物通路网络中链接的预测和生物通路网络的聚类分析，模块发现。这些方法没有很好的利用生物通路网络的拓扑结构关系及网络的自身特点，部分算法时间复杂度过大，计算时需要的软硬件资源过多。因此，提高算法的性能，改善生物通路网络的扩展效果的迫在眉睫。就通路网络可视化技术而言，部分生物通路网路展示软件，属于商用软件的范畴，使用的资金费用过高，部分开源的软件项目，功能又过于零散，因此急需一款较为综合的通路网络可视化和分析软件。因此，本研究从生物网络的特点出发，旨在提出一种高效的快速的生物网络扩展算法，同时将开发一个生物通路网络的可视化展示系统与生物通路网络扩展算法相互结合，便于用户的使用，将算法创新与工程实践相融合。
+
+本文各章节的内容安排如下：
+
+第二章 生物通路网络分析：本章旨在分析生物通路网络的拓扑结构，分析重要网络参数，为第三章算法设计做铺垫，同时为第四章系统中的网络分析部分做准备。
+
+第三章 设计与实现融合生物通路网络特点的扩展算法，在算法的时间性能、扩展质量等方面与已有算法进行对比
+
+第四章 生物通路网络可视化系统。详细的介绍可视化系统的架构、设计理念、开发技术等。
