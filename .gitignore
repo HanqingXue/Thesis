@@ -29,3 +29,6 @@ dist
 *.toe
 *.xdv
 1-*
+*.png
+*.txt
+*.eps
