@@ -75,8 +75,6 @@ PANTHER	& 基因及其产物相关的通路数据库&http://www.pantherdb.org	& 
 
 谢\cite{xie2012prioritizing}等人提出了一种叫做Bi-Random Walk的方法，该方法在疾病构成网络上实现了疾病未知链接的预测，可借鉴到生物通路网络的扩展过程中。张巧生\cite{zhang2016network}提出了一种基于网络的生物通络扩展方法，该方法避免了已有的通路分析方法的局限性，实验结果表明该方法具有较强的可靠性和预测精度。
 
-
-
 \section{生物通路网络的可视化技术国内外研究现状}[Current research situation version]
 
 随着对生物信息研究的继续，对于通路可视化需求日益增长。在传统的情况下，生物通路网络一般是由生物学专家来绘制，数据库中展示的生物通路图也是静态的不可以编辑的。这种方式很耗时耗力，当发现一个通路中有新的信息时候，更新生物通路十分耗时。针对这些问题大量的可视化工具被开发出来，以IPA为代表的大量通路分析和可视化软件被开发出来，极大的便利了研究者的对生物通路网络图的深入研究，大大节省了研究者的时间和精力。目前主流的通路可视化平台如表\ref{table2}所示
@@ -200,11 +198,13 @@ SN=\frac{S( g_{i} \ ,g_{j} \ ) \ -\ S_{min}}{S_{max\ } -\ S_{min}}
 	& $\boldsymbol{S( g_{i} \ ,g_{j} \ )}$ & 标准化之前对数似然分数值；\\
 \end{tabularx}\vspace{3.15bp}
 
-
-通路网络 是一个带权图G(V, E)，其中集合 V是由基因组成的集合。E是边集，E中的每一个元素$e_{ij}=(v_{i}, v_{j})$代表基因之间的相互作用。
-
-
-如果与 $v_{i}$和$v_{j}$对应的基因$g_{i}$和$g_{i}$ 对应的边$< g_{i} ,g_{j}  >$存在于HumanNet中那么就把边 $< v_{i} ,v_{j}  >$加入集合E中(如图\ref{fig21}所示)， $w_{ij}$ 是集合W中的一个元素，它代表 $v_{i}$和 $v_{j}$作用的强弱， 被量化如下：
+\begin{figure}
+\centering
+\includegraphics[width = 0.8\textwidth]{pathway_cons}
+\caption[fig21]{通路网络的建立过程}
+\label{fig21}
+\end{figure}
+通路网络 是一个带权图G(V, E)，其中集合 V是由基因组成的集合。E是边集，E中的每一个元素$e_{ij}=(v_{i}, v_{j})$代表基因之间的相互作用。如果与 $v_{i}$和$v_{j}$对应的基因$g_{i}$和$g_{i}$ 对应的边$< g_{i} ,g_{j}  >$存在于HumanNet中那么就把边 $< v_{i} ,v_{j}  >$加入集合E中(如图\ref{fig21}所示)， $w_{ij}$ 是集合W中的一个元素，它代表 $v_{i}$和 $v_{j}$作用的强弱， 被量化如下：
 \begin{equation}\label{eq22}
 w_{ij} ( v_{i} ,\ v_{j}) =SN( g_{i} ,g_{j})
 \end{equation}
@@ -212,13 +212,102 @@ w_{ij} ( v_{i} ,\ v_{j}) =SN( g_{i} ,g_{j})
 式中 & $\boldsymbol{ g_{i}, g_{j}}$ &HumanNet中的基因；\\
 	& $\boldsymbol{SN( g_{i} ,g_{j})}$ & HumanNet中标准化后对数相似分数值；\\
 \end{tabularx}\vspace{3.15bp}
-
 至此，通路网络被建立起来。
+
+
+\section{ 通路网络的分析方法}
+由于本文第三章将探究通路网络的扩展算法，因此对通路网络的分析是进行算法设计的基础。作为复杂网络的一种，生物通路网络
+具有复杂网络的共性，同时也有其自身独有的特点。由于复杂网络的理论已经在社交网络分析，蛋白质功能预测、个性广告推荐等领域取得了较好效果，因此这些成熟的复杂网络分析方法也将帮助我们了解生物通路网络的特点，为实现该网络的扩展，生物通路网络的部分特点也将作为网络扩展的部分依据。
+
+复杂网络的分析主要集中在其拓扑结构、 网络参数、 中心性等方面。网络的拓扑结构可以反映网络整体的特征，一些基于网络整体信息的方法如基于信息传播的方法\cite{}都是基于网络的拓扑结构和性质； 网络的参数分析可以反应在度分布、连通域分布、共享邻居分布、最短路径分布等方面，这些网络参数既有基于局部的特点、也有基于全局的特点的。中心性则集中在对网络中节点重要性的衡量上，传统的网络扩展方法大部分基于公共邻居、基于度\cite{}等信息，反应节点在网络中的重要性质时信息过于单一，因此对于中心性的分析将帮助研究更好的衡量和评价节点的重要性。
+
+在本节中我们将介绍通路网络的节点度分布、平均聚类系数分布、拓扑系数、最短路径分布、共享邻居节点分布、邻域连通性分布、介数中心性、接近中心性、压力中心性等属性。同时结合具体的生物通路网络实例进行简要的分析。
+
+\subsection{度分布}
+图结构中与某节点相连接的边的数目为该节点的度，而图中各个的节点度的散布情况就为度分布。度分布是节点度信息在网络中的一个总体描述。一个无向图 ${\displaystyle G=G(V,E)}$ 是指某个节点$ {\displaystyle v_{i_{0}}}$与之相连所有的节点的数目。
+
+\begin{equation}\label{eq22}
+	d( v_{i_{0}}) =\sum\limits ^{e_{i,j} \in E\ }_{i=i_{0}} e_{i,j}
+\end{equation}
+度分布则是对每个非负整数 ${\displaystyle m}$, 度为m的顶点在所有的顶点的比例，可以形式化如下：
+
+\begin{equation}\label{eq23}
+{\displaystyle \forall m\in \mathbb {N} ,\,\,P:m\mapsto P(m)={\frac {\operatorname {Card} \{v_{i}\,|\,d(v_{i})=m\}}{n}},}
+\end{equation}
+其中: Card 为计数函数。其中一个约束条件为$ {\displaystyle \sum _{m\in \mathbb {N} }P(m)=1}$
+
+\subsection{平均聚类系数分布}
+平均聚类系数表示一个图形中节点聚集程度的系数。是一个用来衡量网络节点聚类的情况的参数。 其数学定义如下
+\begin{equation}\label{eq24}
+CC_{v2} =\frac{2n}{_{k( k-1)}}
+\end{equation}
+\begin{tabularx}{\textwidth}{@{}l@{\quad}r@{———}X@{}}
+式中 & $\boldsymbol{k}$ &  表示节点v2的所有相邻的节点的个数，即节点v2的邻居；\\
+	& $\boldsymbol{n}$ &   表示节点v2的所有相邻节点之间相互连接的边的个数；\\
+	& $\boldsymbol{CC_{v2}}$ &	节点V2的平均聚类系数值 \\
+\end{tabularx}\vspace{3.15bp}
+
 \begin{figure}
 \centering
-\includegraphics[width = 0.8\textwidth]{pathway_cons}
-\caption[fig21]{通路网络的建立过程}
-\label{fig21}
+\includegraphics[width = 0.3\textwidth]{cc}
+\caption[fig24]{聚集系数计算的示例图}
+\label{fig24}
 \end{figure}
+
+聚集系数表示一个图中节点的聚集程度，在实际的网络中，相对高密度的连接点关系具有某种组织结构属性，聚集系数高的连接之间存在关联性的概率大于两点随机建立的连接的概率。整个网络的聚集系数是网络中所有的节点的聚集系数的平均值。图\ref{fig24}给出了一个实例图中节点b 的聚集系数计算实例。与b 相邻的节点个数是3个因此k 的取值是3; 在与b相连的节点中其中相邻的有c和d,因此n的取值是1由计算公式可得 $CC_{b}=1/3$。
+
+\subsection{拓扑系数}
+拓扑系数反映的是网络中的节点具有共享邻居的趋势。数学形式定义如下
+\begin{equation}\label{eq25}
+	T_{n} =\ \frac{avg( J( n,m))}{k_{n}}
+\end{equation}
+\begin{tabularx}{\textwidth}{@{}l@{\quad}r@{———}X@{}}
+式中 & $\boldsymbol{k_{n}}$ &  表示节点n的所有相邻的节点的个数，即节点v2的邻居；\\
+	& $\boldsymbol{ J( n,m)}$ &   表示节点n和m  之间共享的邻居的个数；\\
+\end{tabularx}\vspace{3.15bp}
+需要说明的一点是如果n没有邻居节点，那么此时n的拓扑系数为0，拓扑系数反映了一个节点和其他节点之间共享邻居的一种趋势。以图\ref{fig25}为例计算节点b的拓扑系数：由于图 中J（b，c）= J（b，d）= J（b，e）= 2故 $T_{b}=2/3$。
+\begin{figure}
+\centering
+\includegraphics[width = 0.3\textwidth]{toplog}
+\caption[fig25]{拓扑系数计算的示例图}
+\label{fig25}
+\end{figure}
+\subsection{最短路径分布}
+由于生物通路网络被看做图模型来进行研究，因此图上的最短路径求解算法都适用于生物通路网络，常用的最短路径求解算法有Dijkstra\cite{}算法，Bellman-Ford\cite{}算法，Floyd\cite{}算法等。
+最短路径分布就是按照给定的算法计算图中两两之间的最短距离，统计最短路径的分布情况，最短路径分布反映出网络宏观上结构特点如小世界性等特点\cite{Article Navigation
+Computing topological parameters of biological networks}。
+
+\subsection{邻域连通性分布}
+某一个节点的连通性指的是它的邻居节点的个数，某一个节点的邻域连通性指的是该节点对应所有邻居节点的连通性数值的平均值。这里邻域连通性分布指的是对含k个邻居节点的目标节点的邻域连通性值的分布（k=0,1,2……）。如果邻域连通性分布是k的递减函数 ，那么网络高连通的节点更趋于边缘化。若为递增函数，则这些高连通的节点更趋于网络中心。
+\subsection{介数中心性}
+介数包括节点介数和边介数两个概念。节点介数是指网络中通过该节点所有最短路径的数量与所有路径的数量之间的比例。边介数表示通过该边的所有最短路径的数量和所有路径之间的比值。介数的现实意义是反映了节点（边）在网络中的重要程度和其在整个网络中的控制能力。节点介数中心性定义如下
+\begin{equation}\label{eq26}
+	C_{b}( b) =\sum\limits _{s\neq b\neq t} \sigma_{st}( b) /\ \sigma_{st}
+\end{equation}
+
+\begin{tabularx}{\textwidth}{@{}l@{\quad}r@{———}X@{}}
+式中 & $\boldsymbol{s,t,b}$ &  网络中的节点；\\
+	& $\boldsymbol{ \sigma_{st}}$ &   表示s到t的最短路径条数；\\
+	& $\boldsymbol{\sigma_{st}( n)}$ &	表示通过n的s到t最短路径条数 \\
+\end{tabularx}\vspace{3.15bp}
+计算中，通常除以一个：（N -1）（N -2）/ 2，其中N表示节点n参与其他节点连接的节点总数（包括n）。
+在图\ref{fig25}中 $C_{b}( b) =\sum\limits _{s\neq b\neq t} \sigma_{st}( b) /\ \sigma_{st} =  0.583$
+
+节点的介数中心性反映了该节点对网络中其他节点的控制能力，可以有效的衡量该节点在网络中的核心重要程度。
+\subsection{接近中心性}
+接近中心性是衡量信息从给定节点到网络中其他可到达节点的传播速度的一个度量标准，更直观地讲，它反映的是某节点到达其他节点的难易程度。节点n的接近中心性被定义为该节点到其他所有节点的最短路径长度平均值的倒数。定义孤立节点的接近中心性值为0。
+
+\begin{equation}\label{eq27}
+	Cc( b) =1/avg( L( b,\ m))
+\end{equation}
+
+\begin{tabularx}{\textwidth}{@{}l@{\quad}r@{———}X@{}}
+式中 & $\boldsymbol{L(n, m)}$ &  表示n、m节点对之间的最短路径长度；\\
+\end{tabularx}\vspace{3.15bp}
+在图13中Cc(b) = 1/ ( (L(b, a) + L(b, c) + L(b, d) + L(b, e)) / 4) = 4/ (1 + 1 + 1 + 2) = 4/5= 0.8
+
+\subsection{压力中心性}
+压力中心性表示通过节点n的最短路径条数。图中绘制的是随着压力s值的变化，所对应的节点n的分布情况。这里s取值划分为若干个按指数幂增长的10倍的区域，所以这里横坐标取值分别为：{0}; [1, 10); [10, 100); ... 如果通过n节点的最短路径条数很大，那么节点n具有比较大的压力。
+
 
 
