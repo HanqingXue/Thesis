@@ -599,24 +599,139 @@ f( x) =\begin{cases}
 \end{cases}
 \end{equation}
 
-如图\ref{algorithm}所示，图中节点的数字代表其该节点的聚集系数，图中红色节点时当前访问的节点，图中蓝色的节点是生物通路网络中的节点（种子网络节点）。我们选择A节点做作为搜索的源点对全局网络$G^{'}$进行深度优先搜索，选取的阈值$\theta=0.8$，。当访问到的节点$v\in E$时，也就是v是种子网络的节点时，搜索过程继续;当访问的节点不是种子网络的节点时如D、E、F、G、H时，分别计算法其聚集系数关联$S_{xy}$、生物层面的关联$S'_{xy}$,使用判别函数进行计算，若判别函数输出为1时将节点纳入生物通路网络如节点G。将V中所有的节点作为搜索源点，重复如上的操作，最终即可获得扩展后生物通路网络，如算法。。描述。
+如图\ref{algorithm}所示，图中节点的数字代表其该节点的聚集系数，图中红色节点时当前访问的节点，图中蓝色的节点是生物通路网络中的节点（种子网络节点）。我们选择A节点做作为搜索的源点对全局网络$G^{'}$进行深度优先搜索，选取的阈值$\theta=0.8$，。当访问到的节点$v\in E$时，也就是v是种子网络的节点时，搜索过程继续;当访问的节点不是种子网络的节点时如D、E、F、G、H时，分别计算法其聚集系数关联$S_{xy}$、生物层面的关联$S'_{xy}$,使用判别函数进行计算，若判别函数输出为1时将节点纳入生物通路网络如节点G。将V中所有的节点作为搜索源点，重复如上的操作，最终即可获得扩展后生物通路网络，算法的伪代码如下：
+
+
+\begin{algorithm}
+ \AlgoBiCaption{基于深度优先搜索的通路网络扩展算法}{Depth-first based pathway network expansion algorithm}
+\KwIn{$G^{'}(V', E')$: global network, $V$: vertex set of pathway network, $\theta$:cutoff of expansion nodes}
+\KwOut{$M$: expansion node set }%
+
+\For{ \textbf{each} x in V } 
+{
+	Let $S$ be a stack
+	
+	S.push(x)
+	
+	\While{S is not empty}
+	{
+		v = S.pop()
+
+        \If{v is not labeled as discovered}
+        {
+        	Label v as discovered
+
+        	\For{ all edges from v to w in G.adjacentEdges(v) } 
+        	{
+        		\If {w is not labeled as discovered} 
+        		{
+        			S.push(w)
+        		}
+        	  	
+        	}
+
+        	Calculate  $S_{xv}$ and $S'_{xv}$
+        	
+        	\If{$S_{xv}$ < $\theta$ and $S'_{xv}$ < $\theta$} 
+        	{
+        		M.push(v)
+        	}
+        }
+	}
+
+	S.clean()
+}
+\end{algorithm}
+\newpage
+
 \begin{figure}[h]
 \centering
-\includegraphics[width = 1.0\textwidth]{algorithm}
+\includegraphics[width = 0.82\textwidth]{algorithm}
 \caption[algorithm]{基于深度优先搜索的生物通路网络扩展算法的工作流程}
 \label{algorithm}
 \end{figure}
 
-\begin{algorithm}
- \AlgoBiCaption{基于深度优先搜索的通路网络扩展算法}{Depth-first based pathway network expansion algorithm}
-\KwIn{$G^{'}(V', E')$: global network, $V$: vertex set of pathway network, $\theta$:cutoff of expansion node}
-\KwOut{parameter setting $\lambda^T$}%
 
-\WHILE {
-	"HELLO WORLD"
-}
+ \section{实验结果}
+ 我们使用HumanNet作为全局网络，按照上一章的提出的网络构建方法，选取290个人类相关的通路作为研究对象，对这290个生物通路网络进行了扩展，为了验证实际的扩展效果并方便讨论分析，我们选取文献\cite{}，列出的15个人类乳腺癌相关的通路作为本章讨论重点的研究对象。
+ \subsection{扩展结果分析}
+ 我们使用以上3.2-3.5章中介绍的算法进生物通路网络的扩展，从扩展后节点的数量以及扩展网络的准确度方面进行讨论。我们在图\ref{allexpansion}列出
+ \begin{figure}[h]
+\centering
+\includegraphics[width = 0.95\textwidth]{allexpansion}
+\caption[allexpansion]{15个癌症相关生物通路网络的扩展结果}
+\label{allexpansion}
+\end{figure}
 
-\end{algorithm}
+我们扩展了hsa00053在内的15个KEGG\cite{}生物通路，从数量角度可以对扩展结果进行简单分析。
+图中“扩展前”图例代表通路在扩展前的规模，而算法扩展的柱状图高度代表该在该生物通路网络上运行该算法后扩展的节点数量。由图\ref{allexpansion}可知，CN算法对于生物通路扩展的效果较差。在15个通路网络中, CN算法不能对其中9个通路网络
+进行有效的扩展，在扩展过程中，没有任何节点被纳入通路网络中，与我们上一章分析节点一致，该算法的效果取决于其所扩展的网络。
+
+DrugNet算法扩展效果比较稳定，对于每张网络均有10个新的节点纳入到生物通路网络中，但是其纳入的节点数量和网络的规模没有明显的关联，因此对于有些节点较多的网络而言，该算法可能遗漏部分重要节点。同时，DrugNet在进行扩展时需要选择通路网络部分节点作为网络信息传播的源点，因此这些节点的选取可能对扩展的效果有影响。
+
+
+LRW算法扩展后纳入的节点较多，部分通路网络扩展后新纳入的节点数目远远超过了网络自身的规模如hsa04961, hsa04723, hsa04966等，LRW扩展这些通路网络后纳入的节点数目是通路网络节点数目的2-4倍， 纳入更多的节点意味着更多的计算量和时间开销，因此可能对算法的时间效率有影响。同时，纳入节点导致验证这些节点和通路网络之间的关联成为了挑战。
+
+DFE算法纳入节点数目和LRW相比较少，但是其扩展的节点数目和网络规模有关联，这一点比DrugNet考虑的更全面，同时选择合适的参数将网络扩展后规模控制在合理的范围内，有利于验证这些扩展后节点与通路之间的关联。
+
+\subsection{扩展结果验证}
+为了验证算法扩展的节点是否与乳腺癌相关，我们选取BRCA数据集来验证通路扩展的结果。BRCA数据集是从癌症基因组网站TCGA（英文名全称：The Cancer Genome Atlas，网址为http://cancergenome.nih.gov/)下载的数据。该数据由于数据质量较好，被广泛的应用于癌症通路的识别，药物靶点发现，药物重定位的研究。
+
+记扩展后基因的集合为$g_{e}$, BRCA中的基因集为$B$, 使用下式来衡量扩展的效果
+ \begin{equation}
+r\ =\ \frac{||g_{e} |\ \cap \ |B|}{|g_{e} |}
+ \end{equation}
+r的值实际上代表扩展基因里乳腺癌基因所占比率，比率越高说明扩展的效果越好。我们统计了以上4种算法在BRCA数据集上的验证结果
+\begin{figure}[h]
+\centering
+\includegraphics[width = 1.0\textwidth]{rate}
+\caption[rate]{扩展后的基因里乳腺癌基因所占比率}
+\label{rate}
+\end{figure}
+
+由图中可知DrugNet算法扩展后的节点很少是乳腺癌基因，DrugNet扩展效果不佳。CN算法在某些通路网络上取得了较好的效果，但是在大部分的生物通路网络上效果不佳，说明CN算法很依赖网络结构。LRW和BFE的扩展效果比较稳定，在15张通路网络上均取得比较好的效果，LRW扩展的节点中乳腺癌基因的比例更高。
+
+
+ \subsection{性能评价}
+ 为了验证算法的性能，我们对以上的算法进行了性能测试，我们选用留一交叉验证法（Leave-One-Out Cross Validation）记作LOO-CV。LOO-CV测试过程如下：如果设原始数据有N个样本,那么LOO-CV就是每个样本单独作为验证集,其余的N-1个样本作为训练集，所以LOO-CV会得到N个模型,用这N个模型最终的验证集的分类准确率的平均数作为性能指标。
+
+ 采用上述的验证方法保证了所有的样本都参与了模型训练，因此最接近数据最原始的分布，验证的结果比较可靠。排除了随机因素对于实验结果的影响，保证了结果是可以复制的。对于待验证的通路网络G（V， E），我们每次选择一条边移除，若算法能正确地将其扩展到通路网络里，我们认为本次扩展是成功的。重复进行以上的操作$|E|$次，其中有m次能正确的扩展到通路网络中，我们定义预测的准确度
+
+\begin{equation}
+precision\ =\ \frac{m}{|E|}
+\end{equation}
+我们对以上四个算法进行该测试，得到如下的测试结果：
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.8\textwidth]{precision}
+\caption[precision]{算法的精度验证结果}
+\label{precision}
+\end{figure}
+
+由测试结果可知，CN算法的网络扩展的精度较差只有0.69，这与上一节的实验结果分析一致。由于生物通路网络具有小世界特性和无尺度的特点，而CN算法在生物通路网络上能获取的信息有限，因此其CN算法不适合通路网络的扩展，DrugNet和DFE算法网络扩展的精度都较高，DFE略高于DrugNet。LRW 算法的扩展效果最佳，其网络扩展精度可达0.91。
+
+\subsection{运行时间分析}
+算法在在实际的应用中，需要考虑到算法效果和时间效率的平衡。因此对于算法运行时间的分析对于算法性能的比较和算法性能的改进十分重要。我们在15个人类乳腺癌相关的通路网络上运行了以上四个算法，得到了网络规模和运行时间之间的折线图\ref{runtime}, 由于LRW运行时间很长与CN，BFE， DrugNet的不在同一个数量级，为了直观进行对比，图\ref{runtime}采用了双坐标轴。右边的纵坐标轴表示LRW的运行时间，左边的纵轴表示其他3个算法的运行时间。
+\begin{figure}[h]
+\centering
+\includegraphics[width = 1.0\textwidth]{runtime}
+\caption[runtime]{算法的时间性能分析}
+\label{runtime}
+\end{figure}
+
+由图可知LRW算法是最耗时的，随着网络规模的增加其运行时间呈现出指数型的增长趋势，当网络的规模增加到100时，其运行时间达到1300多秒。下面我们对从算法的时间复杂角度进行简要分析。对于每个顶点，每次迭代都涉及到转移矩阵$P$和概率向量$x$的乘积。我们注意到在游走过程中不仅仅访问节点自身，而且访问节点附近一定数量的节点,因此极大的增加了计算量。同时膨胀过程也涉及到矩阵乘积的计算，随着节点规模的增加，矩阵的乘积计算量会指数型增长因此时间开销会极大增加。其时间复杂度最坏情况下为$O(n^{3})$(详细的时间复杂度分析可以参见\cite{})。
+
+CN算法的运行时间较长，原因是在于CN算法需要计算所有节点两两之间的公共邻居矩阵，因此计算次数为$|V|*|V|$, 对于无向图而言其计算次数为$\frac{|V|*|V|}{2}$, 由于生物通路网络具有小世界的特点，当通路中的节点n增大时候，|V|趋近与全局网络的边集的基数$|V^{'}|$,因此随着网络的节点增加计算的时间急剧增加。因此计算的复杂度为$O(n^{2})$。
+
+DFE基于深度优先遍历算法，深度优先遍历算法时间复杂度为$O(|V| + |E|)$, 由于把对V中所有当做深度优先搜索的源点，因此总的时间复杂度为$O((|V| + |E|)*|V|)=O(n^{2})$
+
+DrugNet算法复杂度为$O(n^{3})$, 但由于复杂度取决于种子网络，因此在图\ref{runtime}中该算法的计算速度很快。
+
+% \subsection{案例研究与文献验证}
+\subsection{本章小结}
+在本章中，我们在15个人类乳腺癌相关的生物通路网络上比较了4种生物通路网络扩展算法，实验结果表明在这些通路网络上有限随机游走算法（LRW）和基于深度优先遍历（BFE）的扩展算法扩展效果较好，扩展后的一部分节点可以在公开的乳腺癌数据上得到验证。在时间性能方面，基于深度优先遍历（BFE）的扩展算法和DrugNet算法有较好的时间性能，但是DrugNet扩展结果只有很少数在乳腺癌数据集中。综合扩展的效果和时间性能，我们在本章提出的基于深度优先搜索的通路网络扩展算法具有较好的效果。
+
+
 
 
 \chapter{生物通路网络可视化系统}
