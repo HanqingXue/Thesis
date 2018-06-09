@@ -25,7 +25,6 @@ dist
 *.fdb_latexmk
 *.fls
 *.doc
-*.pdf
 *.toe
 *.xdv
 1-*
