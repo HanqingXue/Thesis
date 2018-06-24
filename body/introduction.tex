@@ -2,7 +2,10 @@
 \chapter{绪论}[Example]
 
 \section{课题背景及研究目的和意义}[Number]
-生物通路是细胞中分子间的一系列活动，导致细胞内某种产物或变化。生物通路可以导致新的分子的组装（如脂肪和蛋白质）、控制基因的表达、刺激细胞的移动等\footnote{http://www.genome.gov/27530687}。复杂疾病往往和生物通路网络存在密切的关系。复杂疾病诸如糖尿病、癌症、心脏病，高血压等与多种致病基因、蛋白、生物通路网络是相互关联的\cite{jin2011systematic}。因此深入研究生物通路网络对于探索疾病的发病机制具有重要的意义和研究价值。随着高通量技术的发展和大量生物实验的开展，基因、蛋白、代谢等组学数据日益积累，研究人员开发了一批高质量的生物通路数据库如KEGG\cite{kanehisa2008kegg}（一种受到广泛欢迎的被生物学家广泛使用的数据库）、Reactome\cite{croft2013reactome}（一个免费的和手工标注生物通路的在线数据库）；DrugBank\cite{wishart2006drugbank}（一种综合性的包含大量的药物和靶点数据以及生物通路数据的数据库）等（见表\ref{table1} ）。这些数据库蕴含着大量通路、疾病、药物等信息，诸如疾病致病基因，分子间的作用信息，通路网络的拓扑结构信息等，深入研究和挖掘这些数据对于揭示复杂疾病发病机理，发现药物靶点等方面具有重要的意义。
+生物通路是细胞中分子间的一系列活动，导致细胞内某种产物或变化。生物通路可以导致新的分子的组装（如脂肪和蛋白质）、控制基因表达、刺激细胞移动等\footnote{http://www.genome.gov/27530687}。复杂疾病往往和生物通路网络存在密切的关系。复杂疾病（如糖尿病、癌症、心脏病，高血压等）与多种致病基因、蛋白、生物通路网络是相互关联的\cite{jin2011systematic}。因此深入研究生物通路网络对于探索疾病的发病机制具有重要的意义。随着高通量技术的发展和大量生物实验的开展，基因、蛋白、代谢等组学数据日益积累，研究人员开发了一批高质量的生物通路数据库如KEGG\cite{kanehisa2008kegg}（一种受到广泛欢迎的被生物学家广泛使用的数据库）、Reactome\cite{croft2013reactome}（一个免费的和手工标注生物通路的在线数据库）；DrugBank\cite{wishart2006drugbank}（一种综合性的包含大量的药物和靶点数据以及生物通路数据的数据库）等（见表\ref{table1} ）。这些数据库蕴含着大量通路、疾病、药物等信息，诸如疾病致病基因，分子间的作用信息，通路网络的拓扑结构信息等，深入研究和挖掘这些数据对于揭示复杂疾病发病机理，发现药物靶点等方面具有重要的意义。
+
+
+
 
 \begin{table}[htbp]
   \centering
@@ -23,13 +26,13 @@ PANTHER	& 基因及其产物相关的通路数据库&http://www.pantherdb.org	& 
 \label{table1}
 \end{table}
 
-生物通路网络通常和多种疾病、药物、靶点等数据关联，为发现与已知的通路网络关联的药物、靶点、基因关系等，需要对已知的生物通路网络进行扩展。通路网络的常见的扩展方法是将生物通路数据映射到其他生物网络（如疾病、基因、药物网络）上，作为种子节点进行扩展(如图\ref{fig1}所示)。图\ref{fig1}中蓝色的节点是通路网络中原有的节点，红色的节点是扩展后的节点。扩展前的生物通路网络如图\ref{expansion11}所示，扩展后的生物通路网络如图\ref{expansion12}所示。各种生物网络为生物通路的扩展提供了拓扑结构信息，关联数据信息、作用强度信息等。各种生物网络的拓扑结构可以预测生物通路网络中潜在的关联，生物网络中的相互作用则可以发现的生物通路网络中未知的基因、药物、疾病等潜在的链接。将这些信息进行合理的分析和应用是进行生物通路网络扩展的基础。
+生物通路网络通常和多种疾病、药物、靶点等关联，为发现与已知的通路网络关联的药物、靶点、基因关系等，需要对已知的生物通路网络进行扩展。通路网络的常见的扩展方法是将生物通路数据映射到其他生物网络（如疾病、基因、药物网络）上，作为种子节点进行扩展(如图\ref{expansion12}所示)。图\ref{expansion12}中蓝色的节点是通路网络中原有的节点，红色的节点是扩展后的节点。扩展前的生物通路网络如图\ref{expansion11}所示，扩展后的生物通路网络如图\ref{expansion12}所示。各种生物网络为生物通路的扩展提供了拓扑结构信息，关联数据信息、作用强度信息等。生物网络的拓扑结构可以预测生物通路网络中潜在的关联，生物网络中的相互作用则可以发现的生物通路网络中未知的基因、药物、疾病等潜在的链接。将这些信息进行合理的分析和应用是进行生物通路网络扩展的基础。
 
- 生物网络的拓扑结构信息是进行生物通路扩展的重要依据。常见的扩展方法有基于网络传播的方法和基于网络节点聚类的方法。这些方法利用了网络在结构上的全部或者部分信息去寻找生物通路节点和网络中潜在的节点之间的关联以实现生物通路的扩展。经过扩展的生物通路包含了一些潜在的关联信息。这些潜在的信息揭示了一些复杂疾病的发病机制、某些药物的靶点等。
+ 生物网络的拓扑结构信息是进行生物通路扩展的重要依据。常见的扩展方法有基于网络传播的方法和基于网络节点聚类的方法。这些方法利用了网络结构的全部或者部分信息，计算网络中某些潜在节点与生物通路之间的关联，对这些节点进行扩展。
 
 
 
-\begin{figure}{\label{fig1}}
+\begin{figure}
   \centering
   \begin{minipage}{.95\linewidth}
     \setlength{\subfigcapskip}{-1bp}
@@ -46,17 +49,16 @@ PANTHER	& 基因及其产物相关的通路数据库&http://www.pantherdb.org	& 
   \end{minipage}
 \end{figure}
 
-为了对生物通路网络进行直观的认识，便于研究人员的研究和使用。网路可视化技术常常被引入到生物网络的展示过程。生物通路网络展示可以借助于生物通路图。生物通路图是一系列化合物和反应所组成的复杂网络。因此，一条生物通路可表示成节点和边的集合，节点可用来表示参与化学反应的反应物和产物，例如: 蛋白质，小分子化合物，DNA，RNA 等;边可表示各种相互作用关系，例如: 反应和规则。生物通路图以直观网络图谱的方式来显示相关的生物学信息，便于生物学家认清各种生物反应的网络图谱。了解生物通路中参与反应的生物分子之间的关系，各个生物分子的功能，以及各自的反应方式，以便于生物学家对生物实验数据进行观察、记录和分析。
+为了对生物通路网络进行直观的认识。网路可视化技术常常被引入到生物网络的展示过程。生物通路网络展示可以借助生物通路图。生物通路图是一系列化合物和反应所组成的复杂网络。因此，一条生物通路可表示成节点和边的集合，节点可用来表示参与化学反应的反应物和产物，例如: 蛋白质，小分子化合物，DNA，RNA 等;边可表示各种相互作用关系，例如: 反应和规则。生物通路图以直观网络图谱的方式来显示相关的生物学信息，便于研究者了解生物通路中参与反应的生物分子之间的关系及各个生物分子的功能、各自的反应方式，辅助研究者对生物实验数据进行观察、记录和分析。
 
-在生物通路图中，每个节点代表一种生物分子。图中的节点有许多相关的属性可供选择设置，例如: 形状、背景颜色、大小、边框颜色、边框层次和边框的粗细等等。在生物通路图中，用边来表示各种相互作用关系、反映类型和生物学功能等等。边可分为有向边和无向边。边也可以采用不同的形状，附加采用不同的颜色和粗细。生物通路图为研究者提供了直观的认识，作为一种重要的工具加速了生物通路的研究，方便了研究者挖掘和发现已有的通路数据中潜在的信息，在揭示疾病的发病机制，提高临床治疗效果、发现药物靶点等方面具有重要的意义。
+在生物通路图中，每个节点代表一种生物分子。图中的节点有许多相关的属性可供选择设置，例如: 形状、背景颜色、大小、边框颜色、边框层次和边框的粗细等。在生物通路图中，用边来表示各种相互作用关系、反应类型和生物学功能等。边可分为有向边和无向边。边不同的样式可以区分不同的作用类型。生物通路图为研究者提供了直观的认识，作为一种重要的工具加速了生物通路的研究，方便了研究者挖掘和发现已有的通路数据中潜在的信息，在揭示疾病的发病机制，提高临床治疗效果、发现药物靶点等方面具有重要的意义。
 
 \section{国内外研究现状分析}[Current research situation]
-\subsection{生物通路网络分析和扩展方法的国内外研究现状}[Network analysis]
- 随着生物通路数据的积累和相关数据库的日益完备，对生物通路数据分析技术和生物通路网络分析及扩展方法的需求日益增长。生物通路分析技术已经成为深入研究生物学差异基因表达和蛋白的首选，因为它不仅降低了研究成本，而且增加了对于一些现象的解释能力。通路分析技术已经被广泛的使用到基因本体分析、生物互作网络分析（如蛋白网路）等领域。第一代的生物通路分析技术是以以ORA\cite{goeman2007analyzing}方法为代表。该方法的工作流程一般是使用一定的阈值和标准创建输入列表。对于每一个通路在给定输入基因列表情况下，进行相关度测试得到最后和输入基因最为显著相关的通路，最常见的是超几何分布、卡方检测、二项式分布检测等。然而这类的方法是具有显著的缺陷的。首先，不同的测试其量度不同，这就意味着除了测试基因在数量上的信息，其他的测试量之间无法进行统一的比较。其次，这种方法在考虑基因时只选择了显著的基因，而丢失其他的基因。第三，没有考虑到列表里面基因之间的关联性和通路之间的关联性。
+ 随着生物通路数据的积累和相关数据库的日益完备，生物通路数据的分析技术和通路网络扩展方法的研究日益深入。生物通路分析技术已经成为深入研究生物学差异基因表达的首选，因为它不仅降低了研究成本，而且增加了对于一些现象的解释能力。通路分析技术已经被广泛的使用到基因本体分析、生物互作网络分析（如蛋白网路）等领域。第一代的生物通路分析技术是以ORA\cite{goeman2007analyzing}方法为代表。该方法的工作流程一般是使用一定的阈值和标准创建输入列表。每一个通路在给定输入基因列表情况下，进行相关度测试得到最后和输入基因最为显著相关的通路，最常见的是超几何分布、卡方检测、二项式分布检测等。然而这类的方法是具有显著的缺陷的。首先，不同的测试其量度不同，这就意味着除了测试基因在数量上的信息，其他的测试量之间无法进行统一的比较。其次，这种方法在考虑基因时只选择了显著的基因，而丢失其他的基因。第三，没有考虑到列表里面基因之间的关联性和通路之间的关联性。
 
  由于ORA技术存在的这些缺点，更为先进的通路分析技术被发展出来，其中以FCS\cite{lee2011prioritizing}为典型的代表。FCS克服了ORA缺点，实现了在从分子测量角度寻找到生物通路上的显著基因。FCS用一个统一的分数将各种不同的统计分析方法得到的结果结合了起来。OFA 和FCS方法仅仅考虑了生物通路上基因的数量和基因表达信息来确定关键的生物通路。然而，生物通路往往和其他的基因之间存在着链接，这些基因往往和生物通路起作用。为了添加更多有用的信息，基于生物通路网络拓扑结构的方法（基于通路网络分析的方法）越来越受到重视，该方法充分利用拓扑结构信息来计算在基因层面的特性。
 
-为了深入的研究生物通路网络，对生物通路网络结构的分析是十分重要的环节。由于生物通路网络，也是一种基于边和节点的图模型。分析传统的网络的方法，对于生物通路网络的分析过程也是十分有益的。传统的网络分析方法可以完成网络抽取、网络的中心性分析，社区探测、分类、链接预测等任务。这些分析方法也适应于生物通路网络的分析。2004年Newman\cite{newman2006modularity}等人于提出了模块度（modularity）这一概念。这一个概念在研究者引入到复杂网络中社区发现过程中，这一概念在社交网络分析和生物网络分析中得到了实践。Tamas Nepusz\cite{nepusz2012detecting}等提出了一个基于贪心策略的子网络节点聚类算法ClusterONE\cite{nepusz2012detecting}。ClusterONE通过定义一个量化的度量“内聚力”，内聚力是用于表征子网内部的凝集程度和子网与外部的分割程度。该算法可以实现网络聚类及网络链接预测。 Wu\cite{wu2013computational}等人利用KEGG\cite{kanehisa2008kegg}中的药物-靶点,疾病-基因关系构建了一个多重网络，使用ClusterONE\cite{nepusz2012detecting}和Louvain\cite{blondel2008fast}算法在这个网络进行“模块发现”，对潜在的关联关系进行了预测。Emig \cite{emig2013drug}等人提出了一种基于结合局部和全局网络信息的网络分析方法。该方法融合药物靶点、基因表达芯片数据、疾病信息构造全局网络。作者融合邻居得分（局部网络方法）、节点关联性（局部网络方法）、网络传播（全局网络方法）、随机游走（全局网络方法）对全局网络进行分析，预测了网络中潜在的链接。
+为了深入研究生物通路网络，对生物通路网络结构分析是十分重要的环节。生物通路网络是一种基于边和节点的图模型。分析传统的网络的方法，对于生物通路网络的分析过程也是十分有益的。传统的网络分析方法可以完成网络抽取、网络的中心性分析，社区探测、分类、链接预测等任务。这些分析方法也适应于生物通路网络的分析。2004年Newman\cite{newman2006modularity}等人于提出了模块度（modularity）这一概念。这一个概念在研究者引入到复杂网络中社区发现过程中，这一概念在社交网络分析和生物网络分析中得到了实践。Tamas Nepusz\cite{nepusz2012detecting}等提出了一个基于贪心策略的子网络节点聚类算法ClusterONE\cite{nepusz2012detecting}。ClusterONE通过定义一个量化的度量“内聚力”，内聚力是用于表征子网内部的凝集程度和子网与外部的分割程度。该算法可以实现网络聚类及网络链接预测。 Wu\cite{wu2013computational}等人利用KEGG\cite{kanehisa2008kegg}中的药物-靶点,疾病-基因关系构建了一个多重网络，使用ClusterONE\cite{nepusz2012detecting}和Louvain\cite{blondel2008fast}算法在这个网络进行“模块发现”，对潜在的关联关系进行了预测。Emig \cite{emig2013drug}等人提出了一种基于结合局部和全局网络信息的网络分析方法。该方法融合药物靶点、基因表达芯片数据、疾病信息构造全局网络。作者融合邻居得分（局部网络方法）、节点关联性（局部网络方法）、网络传播（全局网络方法）、随机游走（全局网络方法）对全局网络进行分析，预测了网络中潜在的链接。
 
 \begin{figure}
 \centering
@@ -71,10 +73,9 @@ PANTHER	& 基因及其产物相关的通路数据库&http://www.pantherdb.org	& 
 	P_{T+1,T} = 1-P_{T,T-1}
 \end{equation}
 
-基于随机游走概念提出的一系列方法被广泛应用在生物网络扩展和生物网络中潜在的链接预测领域，例如药物的重定位领域。本人在\cite{xue2018review}中系统的总结了基于网络的药物重定位方法，这些方法对于药物-疾病关系，疾病-通路关系的发现具有重要的意义，这些方法也能很好的迁移到生物通路网络的扩展方面。例如Chipman\cite{chipman2009predicting}等人生物网络上使用了随机游走算法，该方法捕获了生物网络的全局信息，预测出和已知通路相关的部分基因。Macropol\cite{macropol2009rrw}提出了一种自启动的随机游走算法，在蛋白质网络上检测到了相关的功能模块（蛋白质通路）。Liu\cite{liu2010link}提出了一种本地随机游走算法，该算法以随机游走算法为基础，实现了在规模的复杂网络中的关联关系的预测，以此来实现生物通路的扩展。该方法具有以较低的复杂度得到高精度的预测结果和扩展结果等特点。
+基于随机游走概念提出的一系列方法被广泛应用在生物网络扩展和生物网络中潜在的链接预测领域，例如药物的重定位领域。本人在\cite{xue2018review}中系统的总结了基于网络的药物重定位方法，这些方法对于药物-疾病关系，疾病-通路关系的发现具有重要的意义，这些方法也能很好的迁移到生物通路网络的扩展方面。例如Chipman\cite{chipman2009predicting}等人生物网络上使用了随机游走算法，该方法捕获了生物网络的全局信息，预测出和已知通路相关的部分基因。Macropol\cite{macropol2009rrw}提出了一种自启动的随机游走算法，在蛋白质网络上检测到了相关的功能模块（蛋白质通路）。Liu\cite{liu2010link}提出了一种本地随机游走算法，该算法以随机游走算法为基础，实现了在规模的复杂网络中的关联关系的预测，以此来实现生物通路的扩展。该方法具有以较低的复杂度得到高精度的预测结果和扩展结果。最近5年随机游走算法在通路网络分析和通路网络扩展等领域也取得了很多进展如 \cite{huang2018bioinformatic, agrawal2018large,li2018computational,wu2018leveraging, lee2018identification}。
 
-
-国内学者也对生物通路网络的扩展方法进行了深入的研究。王夏\cite{wang2009}等利用马尔科夫聚类的方法对蛋白质网络进行了综合分析并借助模块分析的方法，预测了蛋白质网络中的相关功能模块，作者整合了模块之间的作用关系、GO数据库注释信息、KEGG\cite{kanehisa2008kegg}数据库中的代谢通路数据，提出了一种既能扩展通路网络，又能进行致病性和细胞进程研究的方法。
+国内学者也对生物通路网络的扩展方法进行了深入的研究。王夏\cite{wang2009}等利用马尔科夫聚类的方法对蛋白质网络进行了综合分析并借助模块分析的方法预测了蛋白质网络中的相关功能模块，作者整合了模块之间的作用关系、GO数据库注释信息、KEGG\cite{kanehisa2008kegg}数据库中的代谢通路数据，提出了一种既能扩展通路网络，又能进行致病性和细胞进程研究的方法。
 
 
 李寅珠\cite{liyinzhu2012}等提出了利用蛋白质相互作用信息来扩展生物通路网络的方法。作者在蛋白相互作用关系构建的网络上，考虑到蛋白质网络中的一阶、二阶特性，使用聚类分析算法进行了蛋白质网络的功能划分，使得同一个生物通路网络中的蛋白均出现在同一个蛋白质功能模块，以此来发现与通路网络相关的新的蛋白。
@@ -115,10 +116,10 @@ WebGestalt	& www.genmapp.com\\
 \label{table2}
 \end{table}
 
-当前比较主流的生物通路展示方式多基于JavaScript的可视化技术，随着互联网技术的日益发展，传统的桌面端展示方式不适合人们对信息和数据快速获取和分享的需求，而JavaScript为代表的网页端开发语言可以实现可视化系统的线上部署访问。用户无下载软件带来时间成本，同时也省去了部分软件在不同的操作系统，不同的架构下的部署使用的繁琐步骤，因此基于JavaScript的可视化技术越来越受到开发者和用户的欢迎，常用可视化库有D3.js\cite{bostock2012d3}, Cytoscape.js\cite{franz2015cytoscape}等。
+当前比较主流的生物通路展示方式多基于JavaScript可视化技术，随着互联网技术的日益发展，传统的桌面端展示方式不适合人们对信息和数据快速获取和分享的需求，而JavaScript为代表的网页端开发语言可以实现可视化系统的线上部署访问。用户无下载软件带来时间成本，同时也省去了部分软件在不同的操作系统，不同的架构下部署使用的繁琐步骤，因此基于JavaScript的可视化技术越来越受到开发者和用户的欢迎，常用可视化库有D3.js\cite{bostock2012d3}, Cytoscape.js\cite{franz2015cytoscape}等。
 
 
-Cytoscape\cite{franz2015cytoscape}是一款受到用户喜欢的通路网络可视化软件，该软件提供了强大而丰富网络可视化和分析功能，并且实现了跨平台，该软件的研发团队为适应广大的用户的需要开发了Cytoscape.js，也是就是该软件的核心JavaScript库，该库包含了网络布局调整，网络交互、网络下载、数据下载等众多功能，用户基于此库结合自己的需要开发相关的控件、插件、布局配置等，本文第四章所开发的可视化系统也基于该库。
+Cytoscape\cite{franz2015cytoscape}是一款受到用户欢迎的通路网络可视化软件，该软件提供了强大而丰富网络可视化和分析功能，并且实现了跨平台。 该软件的研发团队为适应广大的用户的需要开发了Cytoscape.js。该库包含了网络布局调整，网络交互、网络下载、数据下载等众多功能，用户基于此库结合自己的需要开发相关的控件、插件、布局配置等，本文第四章所开发的可视化系统也基于该库。
 
 
 D3.js\cite{bostock2012d3}是一款基于数据驱动的前端JavaScript库，该软件库提供了标准的接口封装，用户可以根据自己的需求定制前端控件, 满足了用户的个性化需求。相对于cytoscape 该软件库更加灵活，但使用该库进行开发工作量比较大，对于系统中具体的实现细节，需要开发者自己去处理，因此对于不熟悉前端技术的开发人员该技术具有较高的门槛。
@@ -168,33 +169,33 @@ yEd Graph Editor	& https://www.yworks.com/products/yed\\
 
 目前，有关通路网络的扩展算法主要集中在生物通路网络中链接的预测和生物通路网络的聚类分析，模块发现等方面。这些方法没有很好的利用生物通路网络的拓扑结构关系及网络的自身特点，部分算法时间复杂度过大，计算时需要的软硬件资源过多。因此，提高算法的性能，改善生物通路网络的扩展效果迫在眉睫。就通路网络可视化技术而言，部分生物通路网路展示软件属于商用软件，它们的授权费用高昂，部分开源的软件项目，功能又过于零散，因此急需一款较为综合的通路网络可视化和分析软件。因此，本研究从生物网络的特点出发，旨在提出一种高效的快速的生物网络扩展算法，同时将开发一个生物通路网络的可视化展示系统与生物通路网络扩展算法相互结合，便于用户的使用，将算法创新与工程实践相融合。本文各章节的内容安排如下：
 
-第二章 生物通路网络分析。本章旨在分析生物通路网络的拓扑结构，分析重要网络参数，为第三章算法设计做铺垫，同时为第四章系统中的网络分析部分做准备。
+第二章对生物通路网络进行了分析。本章旨在分析生物通路网络的拓扑结构，分析重要网络参数，为第三章算法设计做铺垫，同时为第四章系统中的网络分析部分做准备。
 
-第三章 设计与实现融合生物通路网络特点的扩展算法，在算法的时间性能、扩展质量等方面与已有算法进行对比
+第三章我们设计与实现融合生物通路网络特点的扩展算法，在算法的时间性能、扩展质量等方面与已有算法进行对比。我们提出的算法在时间性能和扩展效果方面均有较好的表现。
 
-第四章 生物通路网络可视化系统。详细的介绍可视化系统的架构、设计理念、开发技术等。
+第四章我们开发了生物通路网络可视化系统。详细的介绍可视化系统的架构、设计理念、开发技术等。
 
 
 \chapter{生物通路的构建和分析方法研究}
 \section{引言}
-随着生物通路数据的积累和相关数据库的日益完备，生物通路分析已成为研究的重点。传统的生物通路分析技术没有考虑到通路中基因之间的相互作用对整个通路的影响，因此其分析效果和分析能力有限。随着对复杂疾病的研究日益深入，研究者发现复杂疾病往往是和多种基因相关的，因此使用网络的方法对复杂疾病进行研究成为了当前通路研究的主流。根据美国国家图书馆的统计\footnote{https://www.nlm.nih.gov/}，研究生物网络的文献数目呈现出爆发式的增长趋势，对生物通络网络研究文献也在逐年上升。
+随着生物通路数据的积累和相关数据库的日益完备，生物通路分析已成为研究的重点。传统的生物通路分析技术没有考虑到通路中基因之间的相互作用对整个通路的影响，因此其分析效果和分析能力有限。随着对复杂疾病的研究日益深入，研究者发现复杂疾病往往是和多种基因相关的，因此使用基于网络的方法对复杂疾病进行研究成为了当前通路研究的主流。根据美国国家图书馆的统计\footnote{https://www.nlm.nih.gov/}，研究生物网络的文献数目呈现出爆发式的增长趋势，对生物通络网络研究文献也在逐年上升。
 
-生物通路网络是复杂网络中的一种，复杂网络的分析的方法可以迁移到对于生物通路网络分析当中。生物通路网络中的作用关系是动态变化的，因此反应在网络中，通路网络节点之间的作用会随着时间和外部条件的不同而变化，因此网络具有一种动态的特征，这种特点和复杂网络的特征是相符合的，因此复杂网络的分析方法在生物通路网络同样适用。生物通路网络的拓扑属性、 网络特性、重要网络参数等可以作为通路网络进行扩展的依据。
+生物通路网络是复杂网络中的一种，复杂网络的分析的方法可以迁移到对于生物通路网络上。生物通路网络中的作用关系是动态变化的，通路网络节点之间的作用会随着时间和外部条件的不同而变化，因此网络具有一种动态的特征，这种特点和复杂网络的特征是相符合的，因此复杂网络的分析方法在生物通路网络同样适用。生物通路网络的拓扑属性、 网络特性、重要网络参数等可以作为通路网络进行扩展的依据。
 
 本章中我们讨论了生物通路网络的构建方法，基于建立的生物通路网络进行了网络拓扑结构、网络参数、中心性等分析，进而为生物通路网络扩展算法的研究奠定基础。
 
 \section{数据的选取与分析}
-生物通路网络的分析方法借鉴了一般网络的分析和扩展方法，使用已有的网络结构建立生物通路网络，并基于网络分析结果进行通路的扩展。因此，选择合适的通路数据库和网络结构数据库是十分重要的，在本文中，我们适用包含大量可靠的PPI关系的生物网络HumanNet\cite{lee2011prioritizing}作为基础网络，同时选取KEGG\cite{kanehisa2008kegg}数据库作为通路数据的来源, 作为验证数据使用BRCA作为数据来源，以下介绍这些数据的具体情况。
+生物通路网络的分析方法借鉴了一般网络的分析和扩展方法，使用已有的网络结构建立生物通路网络，并基于网络分析结果进行通路的扩展。因此，选择合适的通路数据库和网络结构数据库是十分重要的，在本文中，我们使用包含大量可靠的PPI关系的生物网络HumanNet\cite{lee2011prioritizing}作为基础网络，同时选取KEGG\cite{kanehisa2008kegg}数据库作为通路数据的来源,使用BRCA数据库作为验证数据集 ，以下介绍这些数据的具体情况。
 
-KEGG\cite{kanehisa2008kegg}Kyoto Encyclopedia of Genes and Genomes）是一套基于日本于1995年制定的人类基因组计划的数据库。该数据库包含基因组、酶促通路以及生物化学反应等数据。该通路数据库之中记录的是细胞之中的分子相互作用网络以及具体生物所特有的变化形式。KEGG\cite{kanehisa2008kegg}提供了一个分类体系，在同一条通路上的有相似的或者相同的功能蛋白质会被归为一组，在本文中KEGG中数据会作为通路扩展的种子节点。
+KEGG\cite{kanehisa2008kegg}Kyoto Encyclopedia of Genes and Genomes）是一套基于日本于1995年制定的人类基因组计划的数据库。该数据库包含基因组、酶促通路以及生物化学反应等数据。该通路数据库记录了细胞之中的分子相互作用信息以及具体生物过程所特有的变化形式。KEGG\cite{kanehisa2008kegg}提供了一个分类体系，在同一条通路上的有相似的或者相同的功能蛋白质会被归为一组，在本文中KEGG中数据会作为通路扩展的种子节点。
 
 HumanNet\cite{lee2011prioritizing}是韩国延世大学和奥斯汀德克萨斯大学的联合研究成果。HumanNet\cite{lee2011prioritizing}整合了21种不同物种的组学数据，根据这些生物数据与已知的人类基因之间的功能作用强弱，这些数据被赋予不同的权重，并通过改进的贝叶斯方法构建了网络结构，形成了一个概率功能网络。HumanNet囊括了18 714个编码基因，25 421对基因间的相互作用，在HumanNet中每个节点代表一个编码基因，每一条边代表两基因间的相互作用并被赋予了权重，该权重是一个相关的对数似然得分，表征两基因间相互作用的概率。HumanNet为基因的优先选择提供了一个通用的方法，对于一个给定的基因，HumanNet会提供一个该基因与其他基因关联的次序，便于挖掘疾病在基因层面的关联关系。HumanNet也为研究者提供了用户接口\footnote{http://www.functionalnet.org/humannet}以方便研究人员进行相关的研究工作。由于该网络融合了多种类型的信息，并且具有较强的通用性，在这篇文章中我们采用HumanNet作为基础网络构建我们的功能网络。
 
 BRCA数据集来自癌症基因组网站TCGA（The Cancer Genome Atlas) \footnote{http://cancergenome.nih.gov/}。该数据由于数据质量较好，被广泛的应用于癌症通路的识别，药物靶点发现，药物重定位的研究。
 
-\section{网络的构建方法研究}[cons]
+\section{生物通路网络的构建方法研究}[cons]
 \label{cons}
-我们选择HumanNet作为基础网络，基因关联网络已经被广泛的应用于理解疾病。HumanNet是一个综合了人类基因的网络，我们在HumanNet上获取基因对之间的相互作用的强度，在HumanNet中基因间的作用强度用一个对数似然分值S表示，S的值是一个大于1 的实数，为了避免由量度引入的误差，我们采用离差标准化将基因间的强度进行归一化由式\ref{eq21}给出
+我们选择HumanNet作为基础网络。HumanNet是一个综合了人类基因的网络，我们在HumanNet上获取基因对之间的相互作用的强度，在HumanNet中基因间的作用强度用一个对数似然分值S表示，S的值是一个大于1 的实数，为了避免由量度引入的误差，我们采用离差标准化将基因间的强度进行归一化由式\ref{eq21}给出
 \begin{equation}\label{eq21}
 SN=\frac{S( g_{i} \ ,g_{j} \ ) \ -\ S_{min}}{S_{max\ } -\ S_{min}}
 \end{equation}
@@ -209,7 +210,7 @@ SN=\frac{S( g_{i} \ ,g_{j} \ ) \ -\ S_{min}}{S_{max\ } -\ S_{min}}
 
 \begin{figure}
 \centering
-\includegraphics[width = 0.8\textwidth]{pathway_cons}
+\includegraphics[width = 0.95\textwidth]{pathway_cons}
 \caption[fig21]{通路网络的建立过程}
 \label{fig21}
 \end{figure}
@@ -233,11 +234,12 @@ w_{ij} ( v_{i} ,\ v_{j}) =SN( g_{i} ,g_{j})
 在本节中我们将介绍通路网络的节点度分布、平均聚类系数分布、拓扑系数、最短路径分布、共享邻居节点分布、邻域连通性分布、介数中心性、紧密中心性等属性。同时结合具体的生物通路网络实例进行简要的分析。
 
 \subsection{度分布}
-图结构中与某节点相连接的边的数目为该节点的度，而图中各个的节点度的散布情况就为度分布。度分布是节点度信息在网络中的一个总体描述。一个无向图 ${\displaystyle G=G(V,E)}$ 是指某个节点$ {\displaystyle v_{i_{0}}}$与之相连所有的节点的数目。
+图结构中与某节点相连接的边的数目为该节点的度，而图中各个的节点度的散布情况就为度分布。度分布是节点度信息在网络中的一个总体描述。一个无向图 ${\displaystyle G=G(V,E)}$中节点$ {\displaystyle v_{i_{0}}}$的度是指与节点$ {\displaystyle v_{i_{0}}}$相连的所有节点的数目,节点v的度记为d(v)。一个图中度的总和与图中边的数目$E$之间存在如式\ref{degreedis}所述的关系。
 
-\begin{equation}\label{eq22}
-	d( v_{i_{0}}) =\sum\limits ^{e_{i,j} \in E\ }_{i=i_{0}} e_{i,j}
+\begin{equation}\label{degreedis}
+  \sum _{v\ \in V} d( v) =2|E|
 \end{equation}
+
 度分布则是对每个非负整数 ${\displaystyle m}$, 度为m的顶点在所有的顶点的比例，可以形式化如下：
 
 \begin{equation}\label{eq23}
@@ -246,24 +248,42 @@ w_{ij} ( v_{i} ,\ v_{j}) =SN( g_{i} ,g_{j})
 其中: Card 为计数函数。其中一个约束条件为$ {\displaystyle \sum _{m\in \mathbb {N} }P(m)=1}$
 
 \subsection{平均聚类系数分布}
-平均聚类系数表示一个图形中节点聚集程度的系数。是一个用来衡量网络节点聚类的情况的参数。 其数学定义如下
+平均聚类系数表示一个图形节点聚集程度的系数。是一个用来衡量网络节点聚类的情况的参数。 节点${v_{2}}$的聚集系数定义如下
 \begin{equation}\label{eq24}
-CC_{v2} =\frac{2n}{_{k( k-1)}}
+CC_{v_{2}} =\frac{2n}{_{k( k-1)}}
 \end{equation}
 \begin{tabularx}{\textwidth}{@{}l@{\quad}r@{———}X@{}}
-式中 & $\boldsymbol{k}$ &  表示节点v2的所有相邻的节点的个数，即节点v2的邻居；\\
-	& $\boldsymbol{n}$ &   表示节点v2的所有相邻节点之间相互连接的边的个数；\\
-	& $\boldsymbol{CC_{v2}}$ &	节点V2的平均聚类系数值 \\
+式中 & $\boldsymbol{k}$ &  表示节点${v_{2}}$的所有相邻的节点的个数，即节点${v_{2}}$的邻居；\\
+	& $\boldsymbol{n}$ &   表示节点${v_{2}}$的所有相邻节点之间相互连接的边的个数；\\
+	& $\boldsymbol{CC_{v_{2}}}$ &	节点${v_{2}}$的平均聚类系数值 \\
 \end{tabularx}\vspace{3.15bp}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width = 0.3\textwidth]{fig22}
-\caption[fig24]{聚集系数计算的示例图}
-\label{fig24}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width = 0.3\textwidth]{fig22}
+%\caption[fig24]{聚集系数计算的示例图}
+%\label{fig24}
+%\end{figure}
 
 聚集系数表示一个图中节点的聚集程度，在实际的网络中，相对高密度的连接点关系具有某种组织结构属性，聚集系数高的连接之间存在关联性的概率大于两点随机建立的连接的概率。整个网络的聚集系数是网络中所有的节点的聚集系数的平均值。图\ref{fig24}给出了一个实例图中节点b 的聚集系数计算实例。与b 相邻的节点个数是3个因此k 的取值是3; 在与b相连的节点中其中相邻的有c和d,因此n的取值是1由计算公式可得 $CC_{b}=1/3$。
+
+
+\begin{figure}{\label{fig1}}
+  \centering
+  \begin{minipage}{.95\linewidth}
+    \setlength{\subfigcapskip}{-1bp}
+    \centering
+    \begin{minipage}{\textwidth}
+      \centering
+      \subfigure{\label{jujixishu}}\addtocounter{subfigure}{-2}
+      \subfigure{\subfigure[聚集系数计算的示例]{\includegraphics[width=0.35\textwidth]{fig22}}}
+      \subfigure{\label{tuopuxishu}}\addtocounter{subfigure}{-2}
+      \subfigure{\subfigure[拓扑系数计算的示例]{\includegraphics[width=0.4\textwidth]{toplog}}}
+    \end{minipage}
+	\caption[fig24]{计算示例图}
+  \label{fig24}
+  \end{minipage}
+\end{figure}
 
 
 \subsection{最短路径分布}
@@ -284,18 +304,16 @@ CC_{v2} =\frac{2n}{_{k( k-1)}}
 	& $\boldsymbol{\sigma_{st}( n)}$ &	表示通过n的s到t最短路径条数 \\
 \end{tabularx}\vspace{3.15bp}
 计算中，通常除以$\frac{( N-1)( N-2) \ }{2}$，其中$N$表示节点n与其他节点连接的节点总数（包括n）。
-在图\ref{fig25}中 $C_{b}( b) =\sum\limits _{s\neq b\neq t} \sigma_{st}( b) /\ \sigma_{st} =  0.583$
+在图\ref{fig24}中 $C_{b}( b) =\sum\limits _{s\neq b\neq t} \sigma_{st}( b) /\ \sigma_{st} =  0.583$
 
 节点的介数中心性反映了该节点对网络中其他节点的控制能力，可以有效的衡量该节点在网络中的核心重要程度。
 
-
-
-\begin{figure}[h]
-\centering
-\includegraphics[width = 0.3\textwidth]{toplog}
-\caption[fig25]{拓扑系数计算的示例图}
-\label{fig25}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width = 0.5\textwidth]{toplog}
+%\caption[fig25]{拓扑系数计算的示例图}
+%\label{fig25}
+%\end{figure}
 
 \subsection{拓扑中心性（拓扑系数）}
 拓扑系数反映网络中的节点具有共享邻居的趋势。数学形式定义如下
@@ -306,7 +324,7 @@ CC_{v2} =\frac{2n}{_{k( k-1)}}
 式中 & $\boldsymbol{k_{n}}$ &  表示节点n的所有相邻的节点的个数，即节点n的邻居；\\
 	& $\boldsymbol{ J( n,m)}$ &   表示节点n和m  之间共享的邻居的个数；\\
 \end{tabularx}\vspace{3.15bp}
-若n没有邻居节点，那么n的拓扑系数为0。拓扑系数反映了一个节点和其他节点之间共享邻居的一种趋势。以图\ref{fig25}为例计算节点b的拓扑系数：由于图 中J（b，c）= J（b，d）= J（b，e）= 2故 $T_{b}=\frac{2}{3}$。
+若n没有邻居节点，那么n的拓扑系数为0。拓扑系数反映了一个节点和其他节点之间共享邻居的一种趋势。以图\ref{fig24}为例计算节点b的拓扑系数：由于图 中J（b，c）= J（b，d）= J（b，e）= 2故 $T_{b}=\frac{2}{3}$。
 
 
 \subsection{紧密中心性}
@@ -317,9 +335,9 @@ CC_{v2} =\frac{2n}{_{k( k-1)}}
 \end{equation}
 
 \begin{tabularx}{\textwidth}{@{}l@{\quad}r@{———}X@{}}
-式中 & $\boldsymbol{L(n, m)}$ &  表示n、m节点对之间的最短路径长度；\\
+式中 & $\boldsymbol{L(b, m)}$ &  表示b、m节点对之间的最短路径长度；\\
 \end{tabularx}\vspace{3.15bp}
-以图\ref{fig25}为例，计算图中的b的紧密中心性的过程为$Cc(b) = 1/ ( (L(b, a) + L(b, c) + L(b, d) + L(b, e)) / 4) = 4/ (1 + 1 + 1 + 2) = 4/5= 0.8$
+以图\ref{fig24}为例，计算图中的b的紧密中心性的过程为$Cc(b) = 1/ ( (L(b, a) + L(b, c) + L(b, d) + L(b, e)) / 4) = 4/ (1 + 1 + 1 + 2) = 4/5= 0.8$
 
 \section{生物通路网络分析结果}
 在本节中，我们筛选了290个KEGG\cite{kanehisa2008kegg}数据库中和人类相关的生物通路，使用\ref{cons}节的网络构建方法创建了290个生物网络，以这些网络为基础，我们使用上一节的网络分析方法，对这些网络进行了详细的分析，结果如下：
@@ -328,7 +346,7 @@ CC_{v2} =\frac{2n}{_{k( k-1)}}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.95\textwidth]{degree_dis}
+\includegraphics[width = 1\textwidth]{degree_dis}
 \caption[fig26]{生物通路网络度的平均值统计}
 \label{fig26}
 \end{figure}
@@ -338,7 +356,7 @@ CC_{v2} =\frac{2n}{_{k( k-1)}}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.6\textwidth]{pie}
+\includegraphics[width = 0.72\textwidth]{pie}
 \caption[fig27]{生物通路最短路径的平均值统计}
 \label{fig27}
 \end{figure}
@@ -385,8 +403,9 @@ CC_{v2} =\frac{2n}{_{k( k-1)}}
 生物通路网络扩展算法是重要的生物通路分析方法，生物通路扩展的步骤是：在全局网络上创建生物通路网络并将其作为种子网络，使用特定扩展策略和方法将全局网络中与种子节点紧密相关的节点纳入到给定的生物通路网络中。经过扩展后纳入通路网络的这些节点与某些复杂疾病之间具有紧密关联。
 
 本章中我们将介绍几种具有代表性的生物通路网络扩展算法并结合上一章通路网络分析方法提出了一种基于搜索策略的生物通路网络扩展算法，并且以HumanNet为全局网络的进行了通路网络的扩展实验，评估了这些方法的扩展效果和算法运行时间。
+\section{相关研究}
 
-\section{基于链接预测的通路网络扩展算法}
+\subsection{基于链接预测的通路网络扩展算法}
 链接预测是指将生物通路网络作为种子网络，在全局网络中预测与种子网络中节点相关的链接，将这些链接中的节点纳入扩展后的生物通路网络。形式化如下：将生物通路网路看成一个无向图G(V,E), 在这里V代表节点的集合，E代表链接（边）的集合，图G不允许存在环。用U表示全集，其中包含$\frac{|V|*|V-1|}{2}$个可能的链接，U中的一部分链接存在于待扩展的全局网络里。待预测链接集合为U-E。
 
 链接预测方法最简单的框架是基于相似性的算法，对于$\forall x,y\in V$ 分配一个分数$S_{xy}$。记$e(x,y)$为E中的元素，对$\forall x,y\in V$ 且$e(x,y) \notin E$根据分配的分数从高到低进行排序，通过选择阈值将得分较高的链接纳入到通路网络中。尽管基于相似度的算法比较简单但仍然是当前研究的一个热点。但实际上，节点的相似度的度量仍然是一个挑战。很多情况下，相似性度量是基于已有经验选择的。相似性度量有可能在一些网络中运行良好，在另一些网络可能效果不好\cite{lu2011link}。
@@ -424,10 +443,10 @@ S_{xy} =\frac{F( x) \cap F( y)}{F( x) \cup F( y)}
 \end{equation}
 这个系数很早之前被提出，但被广泛的使用。
 
-\section{基于网络传播的通路网络扩展算法}
+\subsection{基于网络传播的通路网络扩展算法}
 除了基于链接预测的方法，基于网络传播的算法在生物通路网络扩展的方面具有较为广泛的应用。这一类算法的主要思想是为通路网络的节点分配一个初始信息值，然后使用一定的传播策略将这些信息值向全局网络中传播，待传播过程收敛，计算未在通路网络中的节点和通络网络节点的关联程度，将关联程度较高的节点纳入到生物通路网络中，本节我们将介绍一个基于网络传播的算法，并将其应用到生物通路网络的扩展。
 
-Martinez\cite{martinez2015drugnet}提出了一种基于异质网络传播的方法，所谓传播是指为在网络的已知信息节点n分配一个值v。当算法开始工作时，这个信息按照一定传播规则到达目标网络，直到所有节点的信息趋于稳定，算法停止。传统的基于传播的方法如\cite{vanunu2010associating}其缺陷在于信息在网络中传播的规则过于单一，因此实验的效果不佳。但Martinez\cite{martinez2015drugnet}考虑到这一点，并加以改进。作者将全局网络分成不同的子网，每个子网代表不同的生物通路网络，作者定义了子网内传播和子网间传播的方法。对于同一个子网（生物通路网络）信息传播按照
+Martinez\cite{martinez2015drugnet}提出了一种基于异质网络传播的方法（DrugNet），所谓传播是指为在网络的已知信息节点n分配一个值v。当算法开始工作时，这个信息按照一定传播规则到达目标网络，直到所有节点的信息趋于稳定，算法停止。传统的基于传播的方法如\cite{vanunu2010associating}其缺陷在于信息在网络中传播的规则过于单一，因此实验的效果不佳。但Martinez\cite{martinez2015drugnet}考虑到这一点，并加以改进。作者将全局网络分成不同的子网，每个子网代表不同的生物通路网络，作者定义了子网内传播和子网间传播的方法。对于同一个子网（生物通路网络）信息传播按照
 
 \begin{equation}
 x_{i+1} =\alpha *M*x_{i} \ +( 1-\alpha ) *x_{0}
@@ -445,7 +464,7 @@ x_{i+1} =\alpha *M*x_{i} \ +( 1-\alpha ) *x_{0}
 \begin{figure}[h]
 \centering
 \includegraphics[width = 0.95\textwidth]{workflow}
-\caption[fig41]{DrugNet的工作流程}
+\caption[fig41]{DrugNet算法的工作流程}
 \label{fig41}
 \end{figure}
 
@@ -492,7 +511,7 @@ P:Compute the list of paths from $D_{q}$to $D_{t}$ in G
 Sort all entities e $\in V_{t}$ by their sevalues in descending order as L
 
 \end{algorithm}
-\section{基于随机游走的通路网络扩展算法}
+\subsection{基于随机游走的通路网络扩展算法}
 基于随机游走方法在通路网络扩展和通路中潜在的关联关系的预测应用方面取得了很好的效果。本节将介绍一种改进的随机游走算法kwalk\cite{zhang2016limited}（LRW）,该算法在\cite{zhang2016network}中被用于生物通路网络的扩展。
 
 我们在1.2.1中介绍了随机游走的基本概念，在本节中我们将介绍一种有限随机游走，其概念可形式化如下：
@@ -565,7 +584,6 @@ g( x) =\tfrac{x}{x^{T} \ \cdotp \ 1}
 
 \textbf{return} $x^{(t, *)}$
 \end{algorithm}
-
 
 \section{基于搜索策略的生物通路网络扩展算法}
 基于搜索策略的生物网络扩展算法（DFE）主要的观点是将生物通路网络作为种子网网络映射到全局网络中，从种子网络的节点出发进行基于某种策略的搜索，将全局网络上搜索的节点作为扩展后的节点加入到生物通路网络中。
@@ -644,11 +662,12 @@ f( x) =\begin{cases}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.82\textwidth]{algorithm}
+\includegraphics[width = 0.75\textwidth]{algorithm}
 \caption[algorithm]{基于深度优先搜索的生物通路网络扩展算法的工作流程}
 \label{algorithm}
 \end{figure}
 
+\newpage
 
  \section{实验结果}
  我们使用HumanNet作为全局网络，按照上一章的提出的网络构建方法，选取290个人类相关的通路作为研究对象，对这290个生物通路网络进行了扩展，为了验证实际的扩展效果并方便讨论分析，我们选取文献\cite{zhang2016network}列出的15个人类乳腺癌相关的通路作为本章讨论重点的研究对象。
@@ -837,26 +856,7 @@ Arbor布局：该布局观点来自物理学中的万有引力和胡克定律，
 
 
 \subsection{概要信息展示模块}
-\begin{figure}[h]
-  \centering
-  \begin{minipage}{.95\linewidth}
-    \setlength{\subfigcapskip}{-1bp}
-    \centering
-    \begin{minipage}{\textwidth}
-      \centering
-      \subfigure{\label{gaiyao1}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[节点概要信息]{\includegraphics[width=0.2\textwidth]{tab1}}}
-      \subfigure{\label{gaiyao2}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[边概要信息]{\includegraphics[width=0.2\textwidth]{tab2}}}
-      \subfigure{\label{gaiyao3}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[网络信息统计]{\includegraphics[width=0.2\textwidth]{tab3}}}
-      \subfigure{\label{gaiyao4}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[网络编辑模块]{\includegraphics[width=0.2\textwidth]{tab4}}}
-    \end{minipage}
-	\caption[gaiyao]{概要信息展示模块对应的界面}
-	\label{gaiyao}
-  \end{minipage}
-\end{figure}
+
 
 概要信息展示模块分为四个子模块：节点概要信息、边概要信息、网络信息统计、网络编辑模块(如图\ref{gaiyao})。各子模块功能如下：
 
@@ -867,6 +867,28 @@ Arbor布局：该布局观点来自物理学中的万有引力和胡克定律，
 当用户使用框选功能选中网络中的子网（一部分节点和边时），网络信息统计模块，会给出该子网中包含的节点数量、边数量、子网络中所有节点度的总和、子网络中所有节点出度的总和、子网络中所有节点入度的总和。子网中各种类型边信息也会被统计出来。系统默认状态下统计整个生物网络的信息。(如图\ref{gaiyao3})
 
 当用户想修改网络中某些元素（节点或边）的信息时。网络编辑模块提供节点和边信息的修改功能。用户可以修改节点的形状（共11种）、节点的颜色、节点的大小。为提升用户的体验，当修改颜色时系统为用户提供了拾色器功能，用户可以方便的选择自己喜欢的颜色信息。节点大小的修改可以通过滑块拖动的形式实现。(如图\ref{gaiyao4})
+
+
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{.95\linewidth}
+    \setlength{\subfigcapskip}{-1bp}
+    \centering
+    \begin{minipage}{\textwidth}
+      \centering
+      \subfigure{\label{gaiyao1}}\addtocounter{subfigure}{-2}
+      \subfigure{\subfigure[节点概要信息]{\includegraphics[width=0.4\textwidth]{tab1}}}
+      \subfigure{\label{gaiyao2}}\addtocounter{subfigure}{-2}
+      \subfigure{\subfigure[边概要信息]{\includegraphics[width=0.4\textwidth]{tab2}}}
+      \subfigure{\label{gaiyao3}}\addtocounter{subfigure}{-2}
+      \subfigure{\subfigure[网络信息统计]{\includegraphics[width=0.4\textwidth]{tab3}}}
+      \subfigure{\label{gaiyao4}}\addtocounter{subfigure}{-2}
+      \subfigure{\subfigure[网络编辑模块]{\includegraphics[width=0.4\textwidth]{tab4}}}
+    \end{minipage}
+  \caption[gaiyao]{概要信息展示模块对应的界面}
+  \label{gaiyao}
+  \end{minipage}
+\end{figure}
 
 \subsection{详细信息展示模块}
 详细信息展示模块：基因详细信息展示、疾病详细信息展示、药物信息展示、通路信息展示、网络分析结果展示、基因表达信息展示模块如图\ref{juti}所示。各子模块的功能如下：
@@ -880,37 +902,57 @@ Arbor布局：该布局观点来自物理学中的万有引力和胡克定律，
 ，药物数据来源信息（以标签卡形式给出），药物的名称信息如图\ref{juti3}所示。
 
 当用户点击某个节点时，通路信息展示列出与选中节点相关联通路的详细信息。通路详细信息包括与节点相关的通路数量信息
-，通路名称信息、通路中包含的基因数量、通路与选中节点之间的关联得分，该得分是来自GeneCard\footnote{}官方提供数据如图\ref{juti4}所示。
+，通路名称信息、通路中包含的基因数量、通路与选中节点之间的关联得分，该得分是来自GeneCard\footnote{https://www.genecards.org}官方提供数据如图\ref{juti4}所示。
 
-当用户点击某个节点时，网络分析结果展示模块会给出选中节点在网络中度、度的中心性、密集中心性、介数中心性的数值。同时在网络可视化模块，我们提供了网络分析按钮，当用户点击这个按钮时，分析结果会在该模块以柱状统计图的形式给出，分析包括度分布、最短路径分布等如图\ref{j5}所示。
+当用户点击某个节点时，网络分析结果展示模块会给出选中节点在网络中度、度的中心性、密集中心性、介数中心性的数值。同时在网络可视化模块，我们提供了网络分析按钮，当用户点击这个按钮时，分析结果会在该模块以柱状统计图的形式给出，分析包括度分布、最短路径分布等如图\ref{juti5}所示。
 
-当用户点击某个节点时，与选中节点相关的基因表达信息会在基因表达信息展示模块给出。表达信息包括该基因在GXTEX ILITA、GEOPS和CGAP SAGE中的表达情况如图\ref{j6}所示。
+当用户点击某个节点时，与选中节点相关的基因表达信息会在基因表达信息展示模块给出。表达信息包括该基因在GXTEX ILITA、GEOPS和CGAP SAGE中的表达情况如图\ref{juti6}所示。
 
-\begin{figure}[h]{\label{juti}}
-  \centering
-  \begin{minipage}{1.0\linewidth}
-    \setlength{\subfigcapskip}{-1bp}
-    \centering
-    \begin{minipage}{\textwidth}
-      \centering
-      \subfigure{\label{juti1}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[基因详细信息]{\includegraphics[width=0.4\textwidth]{juti1}}}
-      \subfigure{\label{juti2}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[疾病详细信息]{\includegraphics[width=0.4\textwidth]{juti2}}}
-      \subfigure{\label{juti3}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[药物详细信息]{\includegraphics[width=0.4\textwidth]{juti3}}}
-      \subfigure{\label{juti4}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[通路详细信息]{\includegraphics[width=0.4\textwidth]{juti4}}}
-      \subfigure{\label{j5}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[网络分析信息]{\includegraphics[width=0.4\textwidth]{juti5}}}
-      \subfigure{\label{j6}}\addtocounter{subfigure}{-2}
-      \subfigure{\subfigure[基因表达信息]{\includegraphics[width=0.4\textwidth]{juti6}}}
-    \end{minipage}
-	\caption[juti]{详细信息展示模块对应的界面}
-	\label{juti}
-  \end{minipage}
+\newpage
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width = 1.0\textwidth]{juti1}
+\caption[fig33]{基因信息展示模块对应的界面}
+\label{juti1}
 \end{figure}
 
+\begin{figure}[!bhtp]
+\centering
+\includegraphics[width = 1.0\textwidth]{juti2}
+\caption[fig33]{基因信息展示模块对应的界面}
+\label{juti2}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width = 1.0\textwidth]{juti3}
+\caption[fig33]{药物信息展示模块对应的界面}
+\label{juti3}
+\end{figure}
+
+
+\begin{figure}[!bhtp]
+\centering
+\includegraphics[width = 1.0\textwidth]{juti4}
+\caption[fig33]{通路信息展示模块对应的界面}
+\label{juti4}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width = 1.0\textwidth]{juti5}
+\caption[fig33]{网络分析展示模块对应的界面}
+\label{juti5}
+\end{figure}
+
+\begin{figure}[!hbtp]
+\centering
+\includegraphics[width = 0.8\textwidth]{juti6}
+\caption[fig33]{基因表达信息展示模块对应的界面}
+\label{juti6}
+\end{figure}
 
 
 \section{系统实现技术}
@@ -942,8 +984,8 @@ Cytoscape的核心库由元素属性引擎和图形引擎组成，我们在系�
 
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.65\textwidth]{versioframework}
-\caption[fig33]{可视化技术框架图}
+\includegraphics[width = 0.8\textwidth]{versioframework}
+\caption[fig33]{可视化技术框架}
 \label{fig33}
 \end{figure}
 
